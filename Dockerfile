@@ -4,6 +4,7 @@ LABEL org.opencontainers.image.title="AWS CLI with SSM Plugin"
 LABEL org.opencontainers.image.description="The AWS CLI with pre-installed AWS Session Manager plugin"
 LABEL org.opencontainers.image.source="https://github.com/getprobo/docker-aws-cli-with-ssm-plugin"
 LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.vendor="Probo Inc"
 
 ENV SSM_BASE_URL="https://s3.amazonaws.com/session-manager-downloads/plugin/latest"
 
