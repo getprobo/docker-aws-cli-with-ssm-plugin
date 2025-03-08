@@ -19,6 +19,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write # Needed for SLSA provenance
 
     steps:
       - name: Checkout repository
@@ -55,9 +56,14 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64,linux/386
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          provenance: mode=max
+          sbom: true
+          attestations: |
+            type=provenance,mode=max
+            type=sbom
